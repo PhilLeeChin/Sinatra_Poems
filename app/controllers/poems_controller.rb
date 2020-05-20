@@ -1,6 +1,6 @@
-class PoemsController < Sinatra::Base
+class PoemsController < ApplicationController
   get '/poems' do
-    #redirect '/' if !(is_logged_in?)
+    redirect '/' if !(is_logged_in?)
 
     @all_poems = Poems.all
 
@@ -20,7 +20,7 @@ class PoemsController < Sinatra::Base
   end
 
   get '/poems/:id' do
-    #redirect '/' if !(is_logged_in?)
+    redirect '/' if !(is_logged_in?)
     @poems_obj = Poems.find_by(id: params[:id])
 
     if @poems_obj
