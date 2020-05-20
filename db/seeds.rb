@@ -1,2 +1,2 @@
-User.create(email: 'naos@poems.com', password: 'nao11')
-User.create(email: 'lee@poems.com', password: 'nao12')
+User.create(username: 'naos' mail: 'naos@poems.com', password: 'nao11')
+User.create(username: 'lee' mail: 'lee@poems.com', password: 'nao12')
