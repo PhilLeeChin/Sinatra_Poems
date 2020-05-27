@@ -6,5 +6,4 @@ end
 
 run ApplicationController
 use UsersController
-use SessionsController
 use PoemsController
