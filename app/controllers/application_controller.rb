@@ -1,8 +1,10 @@
 require './config/environment'
+require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
 
   configure do
+    register Sinatra::Flash
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
@@ -10,15 +12,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do #Shows welcome page
-    erb :welcome
+    if Helpers.is_logged_in?(session)
+      redirect '/poems'
+    else
+      erb :welcome
+    end
   end
 
-  helpers
-    def is_logged_in?
-      session.has_key?(:user_id)
-    end
-
-    def current_user
-      @current_user ||= User.find(session[:user_id]) if is_logged_in?
-    end
 end
