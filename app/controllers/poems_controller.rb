@@ -1,22 +1,26 @@
 class PoemsController < ApplicationController
   get '/poems' do
-    redirect '/' if !(is_logged_in?)
+    redirect '/' if !(Helpers.is_logged_in?(session))
+    user = Helpers.current_user(session)
+    @all_poems = user.poems.all
 
-    @all_poems = Poems.all
-
-    erb :'poems/pray'
+    erb :'poems/index'
   end
 
   get '/poems/new' do
+    redirect '/' if !(Helpers.is_logged_in?(session))
     erb :'poems/new'
   end
 
   post '/poems' do
-    @new_poems = Poems.new(params)
+    user = Helpers.current_user(session)
+    @new_poems = user.poems.new(params)
 
-    @new_poems.save
-
-    redirect '/poems/#{@new_poems.id}'
+    if @new_poems.save
+      redirect to '/poems/#{user.poems.count}'
+    else
+      erb :'/poems/new.error'
+    end
   end
 
   get '/poems/:id' do
@@ -35,9 +39,5 @@ class PoemsController < ApplicationController
     @poems_obj = Poems.find_by(id: params[:id])
 
     erb :'/poems/edit'
-  end
-
-  patch '/rooms/:id' do
-
   end
 end
