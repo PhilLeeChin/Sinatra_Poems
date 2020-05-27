@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="active" href="/poems">Home</a>
+      <a href="/poems/new">New Poem</a>
+      <a style="float: right; margin-right: 15px" href="/logout">Logout</a>
+    </div><br>
+    <div class="container">
+
+    </div>
+    	<h1><a>Poem Details</a></h1>
+    	<form  method="POST" action="/poems">
+    		<p>Compose Your Poem:</p>
+    	<div>
+        <label for="date_created">Title:</label>
+    		<input id="title" name="title" type="text" placeholder="Poem Name:">
+    	</div>
+      <div>
+        <label for="date_created">Author:</label>
+    		<input id="author" name="author" type="text" placeholder="Author:">
+    	</div>
+      <div>
+        <label for="date_created">Date created:</label>
+    		<input id="date_created" name="date_created" type="text" placeholder="MM-DD-YYYY:">
+    	</div>
+    	<br>
+    	<textarea placeholder="Poem:" id="poem" name="poem"></textarea>
+    	<br>
+    	<input type="submit" class="submit_button" value="Submit Poem">
+    	</form>
+  	</body>
+</html>
