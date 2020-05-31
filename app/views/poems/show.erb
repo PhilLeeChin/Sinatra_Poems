@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/banner.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="active" href="/poems">Home</a>
+      <a href="/poems/new">Create Poem</a>
+      <a style="float: right; margin-right: 15px" href="/logout">Logout</a>
+    </div><br>
+    <div class="container">
+      <img src="/images/show.png" alt="show">
+    </div>
+    <br>
+    <h1 align="center"> <%=@all_poems.title%></h1>
+    <h2> Author: <%=@all_poems.author%></h2>
+    <h3> Date Created: <%=@all_poems.date_created%></h3>
+    <br>
+    <h3>Poem:</h3>
+    <p> <%=@all_poems.poem%> </p>
+    <br>
+    <br>
+    <a href='/poems/<%=params[:id]%>/edit' class="myButton">Edit Poem</a>
+    <br><br>
+    <form action="/poems/<%=@all_poems.id%>/delete" method="POST">
+        <input type="hidden" name="_method" id="hidden" value="DELETE">
+        <input type="submit" class="delete_button" value="Delete Poem">
+    </form>
+    <% if @all_poems.errors.any? %>
+		<ul>
+			<% @all_poems.errors.full_messages.each do |err| %>
+				<li> <em style="color:red;font-size:12px;" > <%= err %> </em></li>
+			<% end %>
+		</ul>
+		<% end %>
+  </body>
+</html>
