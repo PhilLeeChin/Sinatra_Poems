@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   get '/login' do #display form to add new users
-    erb :'/users/new_user'
+    erb :'/users/c_user'
   end
 
   post '/login' do #add new users to app
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       session[:user_id] = @new_user.id
       redirect '/poems'
     else
-      erb :'/users/register_error'
+      erb :'/errors/register_error'
     end
   end
 
