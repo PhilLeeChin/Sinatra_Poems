@@ -24,10 +24,10 @@ class Helpers
       params[:password] == params[:verify_password]
     end
 
-    def self.get_park(params,session)
-      index = 1 #sets index as 1 as all index starts at 0
-      poems_id = params[:id].to_i #sets poems_id == params[:id] and converts to integer
-      poems = self.current_user(session).parks[park_id -= 1] #poems is == the users poems with index - 1 (to account for 0)
+    def self.get_poems(params,session)
+      poem = Poem.find_by_id(params[:id])
+      # binding.pry
+      poem if self.current_user(session).poems.include?(poem)
     end
 
     def self.get_index(params,session)
