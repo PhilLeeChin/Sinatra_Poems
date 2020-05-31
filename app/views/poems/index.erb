@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-
+    <link rel="stylesheet" href="/stylesheets/banner.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
   </head>
   <body>
     <div class="topnav">
-      <a class="active" href="/poems">Home</a>
+      <a class="active" href="/poems">Home</a> |
       <a href="/poem/new">New Poem</a>
       <a style="float: right; margin-right: 15px" href="/logout">Logout</a>
     </div><br>
     <div class="container">
-      <div class="centered"><h1>Welcome <%=Helpers.name(session)%></h1></div>
+      <img src="/images/banner.png" alt="banner">
+      <h1 align="center"><u>Welcome <%=Helpers.name(session)%></u></h1>
     </div>
-
     <% if @all_poems.empty? %>
-        <h1>Click below to compose your first poem:</h1>
-        <br>
-        <a href='/poems/new' class="myButton">Click To Get Writing</a><br>
+        <h2>Click below to compose your first poem:</h2>
+        <a href='/poems/new' class="myButton">Start Composition</a><br>
     <% else %>
         <h1>Here are your written poems:</h1><br>
-        <% @poems.each_with_index do |poem, index| %>
+        <% @all_poems.each_with_index do |poem, index| %>
         <ol>
-          <li> <h3><%= poem.name %></h3></li>
+          <li> <h3><%= poem.title %></h3></li>
           <li> <h4>Written On: <%= poem.date_created %> </h4></li>
         </ol><br>
         <a href='/poems/<%=index + 1%>' class="myButton">View Poem</a>
         <br>
-      <h3>  --------------------------------------------------- </h3>
+      <h3>  *************************************************** </h3>
         <% end %>
     <% end %>
-
-
   </body>
 </html>
