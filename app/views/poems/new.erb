@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-
+    <link rel="stylesheet" href="/stylesheets/create.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
   </head>
   <body>
     <div class="topnav">
-      <a class="active" href="/poems">Home</a>
-      <a href="/poems/new">New Poem</a>
+      <a href="/poems">Home</a> |
+      <a class="active" href="/poems/new">New Poem</a>
       <a style="float: right; margin-right: 15px" href="/logout">Logout</a>
     </div><br>
     <div class="container">
-
+      <img src="/images/show.png" alt="show">
+      <h1 align="center">Poem Essence</h1>
     </div>
-    	<h1><a>Poem Details</a></h1>
     	<form  method="POST" action="/poems">
     		<p>Compose Your Poem:</p>
     	<div>
         <label for="date_created">Title:</label>
-    		<input id="title" name="title" type="text" placeholder="Poem Name:">
-    	</div>
+    		<input id="title" name="title" type="text" placeholder="Poem Title:">
+    	</div><br>
       <div>
         <label for="date_created">Author:</label>
     		<input id="author" name="author" type="text" placeholder="Author:">
-    	</div>
+    	</div><br>
       <div>
         <label for="date_created">Date created:</label>
     		<input id="date_created" name="date_created" type="text" placeholder="MM-DD-YYYY:">
-    	</div>
+    	</div><br>
     	<br>
-    	<textarea placeholder="Poem:" id="poem" name="poem"></textarea>
+    	<textarea placeholder="Compose Poem Here:" id="poem"></textarea>
     	<br>
     	<input type="submit" class="submit_button" value="Submit Poem">
     	</form>
