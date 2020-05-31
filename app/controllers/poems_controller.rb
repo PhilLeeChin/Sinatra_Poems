@@ -15,29 +15,50 @@ class PoemsController < ApplicationController
   post '/poems' do
     user = Helpers.current_user(session)
     @new_poems = user.poems.new(params)
-
+    # binding.pry
     if @new_poems.save
       redirect to '/poems/#{user.poems.count}'
     else
-      erb :'/poems/new.error'
+      erb :'/poems/new_error'
     end
   end
 
   get '/poems/:id' do
-    redirect '/' if !(is_logged_in?)
-    @poems_obj = Poems.find_by(id: params[:id])
-
-    if @poems_obj
-      erb :'poems/list.html'
+    redirect '/' if !(Helpers.is_logged_in?(session))
+    if @all_poems = Helpers.get_poems(params,session)
+      erb :'poems/show'
     else
-      redirect '/poems'
+      erb :'/errors/no_poem'
     end
   end
 
   get '/poems/:id/edit' do
-    redirect '/' if !(is_logged_in?)
-    @poems_obj = Poems.find_by(id: params[:id])
+    redirect '/' if !(Helpers.is_logged_in?(session))
+    @id = params[:id]
+    user = Helpers.current_user(session)
+    if @all_poems = Helpers.get_poems(params, session)
+      erb :'/poems/re_compose'
+    else
+      erb :'errors/no_poem'
+    end
+  end
 
-    erb :'/poems/edit'
+  patch '/poems/:id/edit' do
+    @all_poems = Helpers.get_poems(params, session)
+    @all_poems.title = params[:title]
+    @all_poems.author = params[:author]
+    @all_poems.date_created = params[:date_created]
+    @all_poems.poem = params[:poem]
+    if @all_poems.save
+      redirect '/poems/#{params[:id]}'
+    else
+      flash[:danger] = 'Please fill in all details.'
+      redirect '/poems/#{params[:id]}/new'
+    end
+  end
+
+  delete '/poems/:id/delete' do
+    Poem.find(params[:id]).delete
+    redirect '/poems'
   end
 end
