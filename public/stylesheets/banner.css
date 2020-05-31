@@ -1,0 +1,55 @@
+img {
+  border-radius: 10px;
+  width: 100%;
+  height: 200px;
+}
+
+button, .mybutton, .delete_button, .submit_button {
+  background-color: gray;
+  border: 2px solid black;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 12px;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 125px;
+}
+
+.topnav{
+  background-color: gray;
+  color: black;
+}
+
+.topnav a{
+  color: black;
+}
+
+a.active {
+  color: #40E0D0;
+  text-shadow: 7px 7px 6px white;
+}
+
+button:hover, .mybutton:hover, .delete_button:hover {
+  background-color: #40E0D0;
+  color: black;
+}
+
+a {
+  font-size: 16px;
+}
+
+label, p {
+  font-size: 18px;
+}
+
+h1, h2, a, p {
+  font-family: 'Lobster', cursive;
+}
+
+label, input, li{
+  font-family: 'Lobster', cursive;
+}

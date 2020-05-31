@@ -1,0 +1,64 @@
+img {
+  border-radius: 10px;
+  width: 100%;
+  height: 200px;
+}
+
+.topnav{
+  background-color: gray;
+  color: black;
+}
+
+.topnav a{
+  color: black;
+}
+
+a.active {
+  color: #40E0D0;
+  text-shadow: 7px 7px 6px white;
+}
+
+button, .submit_button{
+  background-color: gray;
+  border: 2px solid black;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 12px;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 125px;
+}
+
+.submit_button:hover {
+  background-color: #40E0D0;
+  color: black;
+}
+
+input {
+  font-size: 16px;
+}
+
+label, p, a{
+  font-size: 18px;
+}
+
+h1, h2, a, p, label, input {
+  font-family: 'Lobster', cursive;
+}
+
+textarea{
+  width: 600px;
+  height: 400px;
+  padding: 5px;
+  font-family: 'Satisfy', cursive;
+  background-image: url(/images/notes.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 1px solid black;
+  font-size: 18px;
+}
