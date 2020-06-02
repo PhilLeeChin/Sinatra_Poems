@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Create Poem</title>
     <link rel="stylesheet" href="/stylesheets/create.css">
     <link rel="stylesheet" href="/stylesheets/main.css">
   </head>
@@ -17,19 +18,14 @@
     	<form  method="POST" action="/poems">
     		<p>Compose Your Poem:</p>
     	<div>
-        <label for="date_created">Title:</label>
+        <label for="title">Title:</label>
     		<input id="title" name="title" type="text" placeholder="Poem Title:">
     	</div><br>
       <div>
-        <label for="date_created">Author:</label>
-    		<input id="author" name="author" type="text" placeholder="Author:">
-    	</div><br>
-      <div>
-        <label for="date_created">Date created:</label>
-    		<input id="date_created" name="date_created" type="text" placeholder="MM-DD-YYYY:">
+        <label for="author">Author: <%=Helpers.name(session)%></label>
     	</div><br>
     	<br>
-    	<textarea placeholder="Compose Poem Here:" id="poem"></textarea>
+    	<textarea name="poem" placeholder="Compose Poem Here:" id="poem"></textarea>
     	<br>
     	<input type="submit" class="submit_button" value="Submit Poem">
     	</form>

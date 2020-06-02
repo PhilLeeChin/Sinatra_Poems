@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-
-</head>
-<body>
-<div class="topnav">
-  <a class="active" href="/poems">Home</a>
-  <a href="/poems/new">New Poem</a>
-  <a style="float: right; margin-right: 15px" href="/logout">Logout</a>
-</div>
-		<h1><a>Poem Essence</a></h1>
+  <head>
+    <title>Create Poem</title>
+    <link rel="stylesheet" href="/stylesheets/create.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="active" href="/poems">Home</a>
+      <a href="/poems/new">New Poem</a>
+      <a style="float: right; margin-right: 15px" href="/logout">Logout</a>
+    </div>
+    <img src="/images/show.png" alt="show">
+		<h1 align="center"><u>Amend Poem</u></h1>
 		<form action="/poems/<%=@id%>/edit" method="POST">
   		<input type="hidden" name="_method" id="hidden" value="PATCH">
-			<p>Compose Your Poem:</p>
 			<% flash.each do |name, msg| %>
 				<div class="error">
 				<em style="color:red;font-size:12px;" > <%= msg %> </em>
 			  </div>
 			<% end %>
 		<div>
-      <label for="date"
-			<input id="title" name="title" value="<%= @all_poems.title %>"  type="text" placeholder="Title:"/>
-		</div>
+      <label for="title" style="text-transform:capitalize;">Title: <%= @poem.title %></label>
+		</div><br>
 		<div>
-			<input id="author" name="author" value="<%= @all_poems.author %>" type="text" placeholder="Author:"/>
-		</div>
+			<label for="author">Author: <%=Helpers.name(session)%></label>
+		</div><br>
 		<div>
-			<input id="date_created" name="date_created" value="<%= @all_poems.date_created %>" type="text" placeholder="Date created:"/>
-		</div>
+      <label for="date_created">Date Created: <%=@poem.created_at.strftime("%m-%d-%Y at %H:%M %p")%></label>
+		</div><br>
 		<div>
-			<textarea placeholder="Compose Poem Here:" id="poem" name="poem" value=''> <%= @all_poems.poem %></textarea>
+			<textarea placeholder="Compose Poem Here:" id="poem" name="poem" value=''> <%= @poem.poem %></textarea>
 		<br>
 		<br>
 		<input type="submit" class="submit_button" value="Submit">
 		</form>
-        <% if @all_poems.errors.any? %>
+        <% if @poem.errors.any? %>
 		<ul>
-			<% @all_poems.errors.full_messages.each do |err| %>
+			<% @poem.errors.full_messages.each do |err| %>
 				<li> <em style="color:red;font-size:12px;" > <%= err %> </em></li>
 			<% end %>
 		</ul>
