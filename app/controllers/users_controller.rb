@@ -5,9 +5,9 @@ class UsersController < ApplicationController
 
   post '/login' do #add new users to app
     #binding.pry
-    @new_user = User.find_by(username: params[:username])
-    if @new_user && @new_user.authenticate(params[:password])
-      session[:user_id] = @new_user.id
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
       redirect to '/poems'
     else
       erb :'/errors/login_error'
@@ -19,11 +19,11 @@ class UsersController < ApplicationController
   end
 
   post '/register' do
-    @new_user = User.new(username: params[:username],
+    @user = User.new(username: params[:username],
     email: params[:email],
     password: params[:password])
-    if @new_user.save
-      session[:user_id] = @new_user.id
+    if @user.save
+      session[:user_id] = @user.id
       redirect '/poems'
     else
       erb :'/errors/register_error'

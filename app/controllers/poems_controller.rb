@@ -2,7 +2,7 @@ class PoemsController < ApplicationController
   get '/poems' do
     redirect '/' if !(Helpers.is_logged_in?(session))
     user = Helpers.current_user(session)
-    @all_poems = user.poems.all
+    @poems = user.poems.all
 
     erb :'poems/index'
   end
@@ -14,18 +14,18 @@ class PoemsController < ApplicationController
 
   post '/poems' do
     user = Helpers.current_user(session)
-    @new_poems = user.poems.new(params)
+    @poem = user.poems.new(title: params[:title], author: params[:author], poem: params[:poem])
     # binding.pry
-    if @new_poems.save
-      redirect to '/poems/#{user.poems.count}'
+    if @poem.save
+      redirect to "/poems/#{@poem.id}"
     else
-      erb :'/poems/new_error'
+      erb :'/errors/new_error'
     end
   end
 
   get '/poems/:id' do
     redirect '/' if !(Helpers.is_logged_in?(session))
-    if @all_poems = Helpers.get_poems(params,session)
+    if @poem = Helpers.get_poems(params,session)
       erb :'poems/show'
     else
       erb :'/errors/no_poem'
@@ -36,7 +36,7 @@ class PoemsController < ApplicationController
     redirect '/' if !(Helpers.is_logged_in?(session))
     @id = params[:id]
     user = Helpers.current_user(session)
-    if @all_poems = Helpers.get_poems(params, session)
+    if @poem = Helpers.get_poems(params, session)
       erb :'/poems/re_compose'
     else
       erb :'errors/no_poem'
@@ -44,21 +44,25 @@ class PoemsController < ApplicationController
   end
 
   patch '/poems/:id/edit' do
-    @all_poems = Helpers.get_poems(params, session)
-    @all_poems.title = params[:title]
-    @all_poems.author = params[:author]
-    @all_poems.date_created = params[:date_created]
-    @all_poems.poem = params[:poem]
-    if @all_poems.save
-      redirect '/poems/#{params[:id]}'
+    @poem = Helpers.get_poems(params, session)
+    # binding.pry
+    @poem.title = params[:title]
+    @poem.author = params[:author]
+    @poem.poem = params[:poem]
+    if @poem.save
+      redirect "/poems/#{params[:id]}"
     else
-      flash[:danger] = 'Please fill in all details.'
-      redirect '/poems/#{params[:id]}/new'
+      flash[:danger] = "Please fill in all details."
+      redirect "/poems/#{params[:id]}/new"
     end
   end
 
-  delete '/poems/:id/delete' do
-    Poem.find(params[:id]).delete
-    redirect '/poems'
+  delete "/poems/:id/delete" do
+    @poem = Poem.find_by_id(params[:id])
+    if @poem.destroy
+      redirect "/poems"
+    else
+      redirect "/poems/#{@poem.id}"
+    end
   end
 end
