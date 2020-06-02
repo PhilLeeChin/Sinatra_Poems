@@ -1,4 +1,5 @@
 class Poem < ActiveRecord::Base
   belongs_to :user
-  validates :user, :date_created, presence: true
+  validates :user_id, presence: true
+  validates :poem, presence: true
 end
