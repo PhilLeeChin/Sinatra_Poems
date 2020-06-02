@@ -1,5 +1,4 @@
 class Helpers
-
     def self.current_user(session)
       if session[:user_id]
         User.find(session[:user_id])
@@ -13,7 +12,7 @@ class Helpers
     end
 
     def self.name(session)
-      self.current_user(session).username
+      self.current_user(session).username.capitalize
     end
 
     def self.get_email(params)
