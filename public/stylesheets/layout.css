@@ -29,11 +29,20 @@ input[type=string], [type=password]{
   box-sizing: border-box;
 }
 
-button:hover, .button:hover {
+a:hover, button:hover, .submit_button:hover {
   background-color: #40E0D0;
   color: black;
 }
 
+a{
+  color: white;
+  text-decoration: none;
+}
+
 h1 {
   font-family: 'Lobster', cursive;
+}
+
+h3 {
+  font-family: 'Kalam', cursive;
 }
