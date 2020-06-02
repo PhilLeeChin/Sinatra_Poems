@@ -17,10 +17,9 @@ ActiveRecord::Schema.define(version: 20200520012103) do
     t.string   "title"
     t.string   "poem"
     t.string   "author"
-    t.string   "date_created"
     t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
