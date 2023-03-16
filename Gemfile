@@ -17,7 +17,7 @@ group :test do
   gem 'rspec'
   gem 'capybara'
   gem 'rack-test'
-  gem 'rack', '~> 2.2.3'
+  gem 'rack', '~> 2.2.6'
   # gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
   gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
 end
